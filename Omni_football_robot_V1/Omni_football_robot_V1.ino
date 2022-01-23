@@ -1,3 +1,15 @@
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WebServer.h>
+#include <ESPmDNS.h>
+#include <Update.h>
+
+const char* host = "esp32";
+const char* ssid = "78-TPlink";
+const char* password = "98989898";
+
+WebServer server(80);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int pot_Value = 0;
 const int pot_Pin = 36;
@@ -40,10 +52,12 @@ Adafruit_SSD1306 OLED(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 void loop() {
 
   //  pot_Value = map(analogRead(pot_Pin), 0, 4095, -65535, 65535) ;
-  //    int Speed[] = {pot_Value, -pot_Value, -pot_Value, pot_Value};
+  //   int Speed[] = {pot_Value, -pot_Value, -pot_Value, pot_Value};
   //  Serial.println(pot_Value);
   // Speed[] = {0, 0, 0, 0};
 
   OLED_display();
   PS3_move(stick_LX, stick_LY, stick_RX , stick_RY);
+  server.handleClient();
+  delay(1);
 }

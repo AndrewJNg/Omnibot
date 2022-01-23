@@ -59,7 +59,7 @@ void PS3_move(int LX, int LY, int RX , int RY)
   //      motor_Speed[2] = Speed_Y_percent - Speed_X_percent/2;
   //      motor_Speed[3] = Speed_X_percent/2;
 
-  Serial.print(angle * 180 / PI);
+  /*Serial.print(angle * 180 / PI);
   Serial.print("    ");
   Serial.print(Speed_total_percent);
   Serial.print("    ");
@@ -72,7 +72,7 @@ void PS3_move(int LX, int LY, int RX , int RY)
   Serial.print(motor_Speed[3] );
   Serial.print("    ");
   Serial.println();
-
+*/
 
   //  Serial.print(Speed_X_motor);
   //  Serial.print("    ");
