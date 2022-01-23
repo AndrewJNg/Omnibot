@@ -37,6 +37,33 @@ const int PWM_resolution_max_value = 255;//65536;
 #define OLED_RESET     4
 Adafruit_SSD1306 OLED(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//ROS message system
+#include <ros.h>
+#include <geometry_msgs/Twist.h>
+
+ros::NodeHandle  nh;
+
+//geometry_msgs::Twist node_msg;
+//ros::Publisher chatter("chatter", &str_msg);
+
+float LX_node = 0;
+float LY_node = 0;
+float RX_node = 0;
+float RY_node = 0;
+
+void received_move( const geometry_msgs::Twist& node_msg) {
+
+  LX_node = node_msg.linear.x;
+  LY_node = node_msg.linear.y;
+  RX_node = node_msg.angular.z;
+  RY_node = 0;
+  //digitalWrite(LED_BUILTIN, HIGH-digitalRead(LED_BUILTIN));
+}
+
+ros::Subscriber<geometry_msgs::Twist> sub("robot_move", &received_move );
+
+
 void loop() {
 
   //  pot_Value = map(analogRead(pot_Pin), 0, 4095, -65535, 65535) ;
@@ -45,6 +72,16 @@ void loop() {
   // Speed[] = {0, 0, 0, 0};
 
   //  OLED_display();
-  PS3_move(int LX, int LY, int RX , int RY);
+  PS3_move(LX_node, LY_node, RX_node, RY_node);
   //PS3_move(stick_LX, stick_LY, stick_RX , stick_RY);
+
+  nh.spinOnce();
+  OLED.clearDisplay();
+  OLED.setTextSize(1);      // Normal 1:1 pixel scale
+  OLED.setTextColor(SSD1306_WHITE); // Draw white text
+  OLED.setCursor(0, 0);     // Start at top-left corner
+  LX_node =500;
+  OLED.print(LX_node);
+  OLED.display();
+  delay(1000);
 }

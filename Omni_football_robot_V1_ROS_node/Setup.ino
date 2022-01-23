@@ -30,9 +30,12 @@ void setup() {
   OLED.display();
 
 
-  while (!Ps3.isConnected())
-  {
-    motor(motor_Speed);
-    OLED_display();
-  }
+//  while (!Ps3.isConnected())
+//  {
+//    motor(motor_Speed);
+//    OLED_display();
+//  }
+  
+  nh.initNode();
+  nh.subscribe(sub);
 }

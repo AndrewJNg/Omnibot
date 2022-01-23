@@ -13,14 +13,14 @@ void notify()
     stick_RY = -Ps3.data.analog.stick.ry;
   }
 
-  /*
-    Serial.print(stick_LX); Serial.print("    ");
-    Serial.print(stick_LY); Serial.print("    ");
-    Serial.print(stick_RX); Serial.print("    ");
-    Serial.print(stick_RY); Serial.print("    ");
-    Serial.print(Ps3.data.button.l1); Serial.print("    ");
-    Serial.println(Ps3.data.button.r1); Serial.print("    ");
-  */
+  
+//    Serial.print(stick_LX); Serial.print("    ");
+//    Serial.print(stick_LY); Serial.print("    ");
+//    Serial.print(stick_RX); Serial.print("    ");
+//    Serial.print(stick_RY); Serial.print("    ");
+//    Serial.print(Ps3.data.button.l1); Serial.print("    ");
+//    Serial.println(Ps3.data.button.r1); Serial.print("    ");
+  
 }
 
 void onConnect() {
