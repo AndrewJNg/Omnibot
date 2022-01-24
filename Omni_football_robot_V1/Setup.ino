@@ -90,9 +90,13 @@ void setup() {
   OLED.display();
 
 
-  /*while (!Ps3.isConnected())
+  while (!Ps3.isConnected())
   {
     motor(motor_Speed);
     OLED_display();
-  }*/
+     OLED_display();
+  PS3_move(stick_LX, stick_LY, stick_RX , stick_RY);
+  server.handleClient();
+  delay(1);
+  }
 }
